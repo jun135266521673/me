@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jQuery.js"></script>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="font/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: #F7F6F6;
+        }
+        
+        .tab {
+            width: 100%;
+            background: #4169E2;
+            position: fixed;
+            z-index: 3;
+            bottom: 0;
+            box-sizing: border-box;
+            height: 4em;
+            opacity: 0.9;
+        }
+        
+        .tab ul {
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .tab ul li {
+            list-style: none;
+            width: 25%;
+            text-align: center;
+            padding-top: 0.5em;
+        }
+        
+        .tab ul li a {
+            text-decoration: none;
+            font-size: 13px;
+        }
+        
+        .tab ul li:nth-child(1) a {
+            color: red;
+        }
+        
+        .tab ul li:nth-child(2) a {
+            color: black;
+        }
+        
+        .tab ul li:nth-child(3) a {
+            color: gold;
+        }
+        
+        .tab ul li:nth-child(4) a {
+            color: white;
+        }
+        
+        .tab ul li a span {
+            display: block;
+            font-size: 29px;
+        }
+        
+        .headers {
+            width: 100%;
+            background: #4169E2;
+            position: fixed;
+            top: 0;
+            display: flex;
+            line-height: 3em;
+        }
+        
+        .lei a {
+            text-decoration: none;
+        }
+        
+        .headers span:nth-child(1) {
+            color: white;
+            display: inline;
+            width: 50%;
+            padding-left: 10px;
+        }
+        
+        .headers span:nth-child(2) {
+            color: white;
+            display: inline;
+            width: 50%;
+            padding-left: 10px;
+            font-size: 13px;
+            text-align: right;
+            padding-right: 10px;
+        }
+        
+        .diqu {
+            width: 100%;
+            margin-top: 4em;
+        }
+        
+        .tongji {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            display: flex;
+        }
+        
+        .tongji span:nth-child(1) {
+            width: 8px;
+            height: 20px;
+            background: blue;
+            display: block;
+        }
+        
+        .tongji span:nth-child(2) {
+            margin-left: 2%;
+            font-weight: 600;
+        }
+        
+        .dress1 {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 4%;
+        }
+        
+        .dress1 #ul1 {
+            width: 100%;
+            display: flex;
+        }
+        
+        .dress1 #ul1 li {
+            list-style: none;
+            width: 20%;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .son {
+            width: 100%;
+            margin-bottom: 2%;
+            margin-top: 1%;
+        }
+        
+        .son2 {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+        
+        .son2 .son3 ul {
+            width: 100%;
+            display: flex;
+        }
+        
+        .son2 .son3 ul li {
+            width: 20%;
+            text-align: center;
+            line-height: 2em;
+            list-style: none;
+            font-size: 13px;
+            overflow: hidden;
+            /*超出部分隐藏*/
+            text-overflow: ellipsis;
+            /* 超出部分显示省略号 */
+            white-space: nowrap;
+            /*规定段落中的文本不进行换行 */
+        }
+        
+        .xla {
+            width: 100%;
+            display: flex;
+        }
+        
+        .news {
+            width: 100%;
+            margin-top: 2%;
+        }
+        
+        .news2 {
+            width: 100%;
+            border-bottom: 1px solid #dedede;
+        }
+        
+        .news3 {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            display: flex;
+        }
+        
+        .leftnew {
+            width: 60%;
+        }
+        
+        .newimg {
+            width: 25%;
+            margin-left: 5%;
+        }
+        
+        .newimg img {
+            width: 100%;
+        }
+        
+        .leftnew a p {
+            font-size: 14px;
+            font-weight: 600;
+            color: black;
+        }
+        
+        .leftnew a {
+            text-decoration: none;
+        }
+        
+        .leftnew p:nth-child(2) {
+            font-size: 13px;
+            color: #999;
+            margin-top: 4%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="headers">
+            <span>防护</span>
+            <span>开源地址</span>
+        </div>
+        <mycomp7 :list7="list7" :list8="list8" :list9="list9"></mycomp7>
+        <div class="tab">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <span class="iconfont icon-zhuye1 icon"></span>
+                        <p>首页</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="piyao.html">
+                        <span class="iconfont icon-xiaoemo icon"></span>
+                        <p>辟谣</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="fanghu.html">
+                        <span class="iconfont icon-dunpai icon"></span>
+                        <p>
+                            防护合辑
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="jibingzhishi.html">
+                        <span class="iconfont icon-shu1 icon"></span>
+                        <p>疾病知识</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <template id="comp5">
+        <div class="diqu">
+            <div class="tongji">
+                <span></span>
+                <span>地区统计</span>
+            </div>
+            <div class="di1">
+                <div class="dress1">
+                    <ul id="ul1">
+                        <li>地区</li>
+                        <li>确诊</li>
+                        <li>死亡</li>
+                        <li>治愈</li>
+                    </ul>
+                </div>
+                <div class="son" v-for="(item,index) in list7">
+                    <div class="son2">
+                        <div class="son3">
+                            <ul>
+                                <li>{{item.provinceName}}</li>
+                                <li>{{item.confirmedCount}}</li>
+                                <li>{{item.deadCount}}</li>
+                                <li>{{item.curedCount}}</li>
+                                <li @click="vshow(item.provinceName)">▼</li>
+                            </ul>
+                           <div>
+                            <div class="xla" v-for="item1 in list8" v-if="name==item.provinceName">
+                                <ul>
+                                    <li>{{item1.cityName}}</li>
+                                    <li>{{item1.confirmedCount}}</li>
+                                    <li>{{item1.deadCount}}</li>
+                                    <li>{{item1.curedCount}}</li>
+                                </ul>
+                            </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news">
+                <div class="news2" v-for="item3 in list9">
+                    <div class="news3">
+                        <div class="leftnew">
+                            <a :href="item3.linkUrl">
+                                <p>{{item3.title}}</p>
+                            </a>
+                            <p>{{new Date(item3.createTime).toLocaleString()}}</p>
+                        </div>
+                        <div class="newimg">
+                            <img :src="item3.imgUrl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            list7: [],
+            list8: [],
+            list9: []
+        },
+        created() {
+            var that = this;
+            fetch("http://49.232.173.220:3001/data/getListByCountryTypeService1").then(function(response) {
+                response.json().then(function(data) {
+                    console.log(data)
+                    that.list7 = data
+                    console.log(that.list7)
+                })
+            });
+            fetch("http://49.232.173.220:3001/data/getIndexRecommendList").then(function(response) {
+                response.json().then(function(data) {
+                    console.log(data)
+                    that.list9 = data
+                    console.log(that.list9)
+                })
+            });
+        },
+        components: {
+            mycomp7: {
+                template: '#comp5',
+                props: {
+                    list7: {
+                        type: Array
+                    },
+                    list8: {
+                        type: Array
+                    },
+                    list9: {
+                        type: Array
+                    }
+                },
+                data() {
+                    return {
+                        name: ''
+                    }
+                },
+                methods: {
+                    vshow(name) {
+                        this.name = name
+                        console.log(this.name)
+                        console.log(name)
+                        var that = this;
+                        fetch("http://49.232.173.220:3001/data/getAreaStat/" + name).then(function(response) {
+                            response.json().then(function(data) {
+                                console.log(data)
+                                that.list8 = data[0].cities
+                                console.log(that.list8)
+                            });
+                        });
+                        var e = event;
+                        console.log(e.target)
+                        console.log(e.path[2].childNodes[2])
+                        if (e.path[2].childNodes[2].style.display == "block") {
+                            e.path[2].childNodes[2].style.display = "none"
+                            e.target.innerHTML = "▼"
+                        } else {
+                            e.path[2].childNodes[2].style.display = "block"
+                            e.target.innerHTML = "▲"
+                        }
+                    }
+                },
+            }
+        }
+    })
+</script>

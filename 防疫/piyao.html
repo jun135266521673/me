@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jQuery.js"></script>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="font/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: #F7F6F6;
+        }
+        
+        .box {
+            width: 100%;
+            margin-top: 4em;
+        }
+        
+        #con {
+            list-style: none;
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            background: #FFFEFE;
+            margin-bottom: 1.5em;
+            border-radius: 9px;
+        }
+        
+        #con .lei p {
+            font-weight: 700;
+            overflow: hidden;
+            /*超出部分隐藏*/
+            text-overflow: ellipsis;
+            /* 超出部分显示省略号 */
+            white-space: nowrap;
+            /*规定段落中的文本不进行换行 */
+            width: 100%;
+        }
+        
+        #con .lei nav {
+            font-size: 13px;
+            color: #999;
+            margin-top: 3%;
+        }
+        
+        #con .lei {
+            margin: 15px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        .sp span {
+            font-size: 13px;
+            color: #999;
+            margin-top: 3%;
+            display: inline-block;
+            width: 49%;
+        }
+        
+        .sp span:nth-child(2) {
+            text-align: right;
+        }
+        
+        .sp {
+            width: 100%;
+            display: flex;
+        }
+        
+        .tab {
+            width: 100%;
+            background: #4169E2;
+            position: fixed;
+            z-index: 3;
+            bottom: 0;
+            box-sizing: border-box;
+            height: 4em;
+            opacity: 0.9;
+        }
+        
+        .tab ul {
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .tab ul li {
+            list-style: none;
+            width: 25%;
+            text-align: center;
+            padding-top: 0.5em;
+        }
+        
+        .tab ul li:nth-child(1) a {
+            color: red;
+        }
+        
+        .tab ul li:nth-child(2) a {
+            color: black;
+        }
+        
+        .tab ul li:nth-child(3) a {
+            color: gold;
+        }
+        
+        .tab ul li:nth-child(4) a {
+            color: white;
+        }
+        
+        .tab ul li a {
+            text-decoration: none;
+            font-size: 13px;
+        }
+        
+        .tab ul li a span {
+            display: block;
+            font-size: 29px;
+        }
+        
+        .headers {
+            width: 100%;
+            background: #4169E2;
+            position: fixed;
+            top: 0;
+            display: flex;
+            line-height: 3em;
+        }
+        
+        .lei a {
+            text-decoration: none;
+        }
+        
+        .headers span:nth-child(1) {
+            color: white;
+            display: inline;
+            width: 50%;
+            padding-left: 10px;
+        }
+        
+        .headers span:nth-child(2) {
+            color: white;
+            display: inline;
+            width: 50%;
+            padding-left: 10px;
+            font-size: 13px;
+            text-align: right;
+            padding-right: 10px;
+        }
+        
+        .conten {
+            margin-top: 4em;
+        }
+        
+        .shang {
+            /* display: flex;
+            flex-flow: row wrap; */
+            width: 100%;
+        }
+        
+        .one {
+            width: 90%;
+            display: flex;
+            text-align: center;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+        
+        .one span:nth-child(1) {
+            display: block;
+            width: 8px;
+            background: blue;
+            height: 20px;
+        }
+        
+        #dated {
+            width: 70%;
+            display: block;
+            text-align: right;
+            margin-left: 5%;
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .xia {
+            width: 80%;
+            display: flex;
+            flex-flow: row wrap;
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-top: 1.5em;
+        }
+        
+        .xia ul {
+            width: 100%;
+        }
+        
+        .xia ul li {
+            width: 25%;
+            float: left;
+            list-style: none;
+            text-align: center;
+        }
+        
+        .xia li:nth-child(1) {
+            color: #F55F56;
+            font-size: 21px;
+        }
+        
+        .xia li:nth-child(1) p {
+            color: black;
+            font-size: 13px;
+        }
+        
+        .xia li:nth-child(2) {
+            color: #FBD359;
+            font-size: 21px;
+        }
+        
+        .xia li:nth-child(2) p {
+            color: black;
+            font-size: 13px;
+        }
+        
+        .xia li:nth-child(3) {
+            color: #B1DAB4;
+            font-size: 21px;
+        }
+        
+        .xia li:nth-child(3) p {
+            color: black;
+            font-size: 13px;
+        }
+        
+        .xia li:nth-child(4) {
+            color: gray;
+            font-size: 21px;
+        }
+        
+        .xia li:nth-child(4) p {
+            color: black;
+            font-size: 13px;
+        }
+        
+        .neirong {
+            width: 100%;
+            border-top: 1px solid #dedede;
+            margin-top: 1.2em;
+        }
+        
+        #neirong2 {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 5%;
+        }
+        
+        #neirong2 ul li {
+            width: 100%;
+            list-style: none;
+            margin-bottom: 3%;
+        }
+        
+        #neirong2 ul li img {
+            width: 18px;
+            height: 18px;
+        }
+        
+        #neirong2 ul li span.one-one {
+            display: inline-block;
+            font-size: 13px;
+            margin-left: 2%;
+        }
+        
+        #neirong2 ul li i {
+            margin-left: 2.3%;
+        }
+        
+        #neirong2 ul li span.one-two {
+            /* display: inline-block; */
+            font-size: 13px;
+            margin-left: 4%;
+        }
+        
+        .map {
+            width: 100%;
+            margin-top: 1.2em;
+            height: 3em;
+            border-top: 1px solid #dedede;
+            border-bottom: 1px solid #dedede;
+        }
+        
+        .map .one-three {
+            width: 90%;
+            display: flex;
+            text-align: center;
+            margin-left: 5%;
+            margin-right: 5%;
+            line-height: 3em;
+        }
+        
+        .one-three span:nth-child(1) {
+            display: block;
+            width: 8px;
+            background: blue;
+            height: 20px;
+            margin-top: 13px;
+        }
+        
+        #ly {
+            width: 70%;
+            display: block;
+            text-align: right;
+            margin-left: 5%;
+            font-size: 12px;
+        }
+        /* .one-three b {
+            margin-top: 1em;
+        } */
+        
+        .map2 img {
+            width: 100%;
+        }
+        
+        .mapimg {
+            width: 100%;
+        }
+        
+        .mapimg img {
+            width: 100%;
+        }
+        
+        .zl {
+            width: 100%;
+        }
+        
+        .zl .one-four {
+            width: 90%;
+            display: flex;
+            text-align: center;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 1em;
+        }
+        
+        .zl .one-four span {
+            display: block;
+            width: 8px;
+            background: blue;
+            height: 20px;
+        }
+        /* .zl .one-four b {
+            float: left;
+        } */
+        
+        .zl img {
+            width: 110px;
+            height: 110px;
+        }
+        
+        .zl2 {
+            width: 100%;
+        }
+        
+        .zl2 .one-five {
+            width: 90%;
+            display: flex;
+            text-align: center;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 0.5em;
+        }
+        
+        .zl2 .one-five span:nth-child(1) {
+            display: block;
+            width: 8px;
+            background: blue;
+            height: 20px;
+        }
+        
+        .box5 {
+            width: 100%;
+            margin-top: 2em;
+        }
+        
+        #con5 {
+            list-style: none;
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            background: #2C334F;
+            margin-bottom: 1.5em;
+            border-radius: 9px;
+        }
+        
+        #con5 .wenti {
+            font-size: 13px;
+            color: #999;
+            margin-top: 3%;
+        }
+        
+        #con5 .wenti {
+            margin: 15px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        #con5 .daan {
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .xx {
+            width: 80%;
+            text-align: right;
+            margin-left: 5%;
+            font-size: 13px;
+        }
+        
+        #con5 .daan #p2 {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 1em;
+        }
+        
+        .daan span {
+            display: block;
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            text-align: right;
+            margin-top: 1.5em;
+        }
+        
+        #p1 {
+            color: white;
+            font-size: 15px;
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+        
+        .show {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 2%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="headers">
+            <span>辟谣</span>
+            <span>开源地址</span>
+        </div>
+        <mycomp :list2="list2" :list3="list3" :list4="list4"></mycomp>
+        <div class="tab">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <span class="iconfont icon-zhuye1 icon"></span>
+                        <p>首页</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="piyao.html">
+                        <span class="iconfont icon-xiaoemo icon"></span>
+                        <p>辟谣</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="fanghu.html">
+                        <span class="iconfont icon-dunpai icon"></span>
+                        <p>
+                            防护合辑
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="jibingzhishi.html">
+                        <span class="iconfont icon-shu1 icon"></span>
+                        <p>疾病知识</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <template id="comp">
+        <div>
+            <div class="conten">
+                <div class="shang">
+                    <div class="one">
+                        <span></span>
+                        <b>全国统计</b>
+                        <span id="dated">{{new Date(list2.createTime).toLocaleString()}}</span>
+                    </div>
+                </div>
+                <div class="xia">
+                    <ul>
+                        <li>{{list2.confirmedCount}}<br><p>全国确诊</p></li>
+                        <li>{{list2.currentConfirmedCount}}<br><p>疑似病例</p></li>
+                        <li>{{list2.curedCount}}<br><p>治愈人数</p></li>
+                        <li>{{list2.deadCount}}<br><p>死亡人数</p></li>
+                    </ul>
+                </div>
+                <div class="neirong">
+                    <div id="neirong2">
+                        <ul>
+                            <li><img src="img/1.png"><span class="one-one">病毒：</span><br><i>·</i><span class="one-two">{{list2.note1}}</span></li>
+                            <li><img src="img/1.png"><span class="one-one">传染源：</span><br><i>·</i><span class="one-two">{{list2.note2}}</span></li>
+                            <li><img src="img/1.png"><span class="one-one">传播途径：</span><br><i>·</i><span class="one-two">{{list2.note3}}</span></li>
+                            <li><img src="img/2.png"><span class="one-one">易感人群：</span><br><i>·</i><span class="one-two">{{list2.remark1}}</span></li>
+                            <li><img src="img/2.png"><span class="one-one">潜伏期：</span><br><i>·</i><span class="one-two">{{list2.remark2}}</span></li>
+                            <li><img src="img/2.png"><span class="one-one">宿主：</span><br><i>·</i><span class="one-two">{{list2.remark3}}</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="map">
+                        <div class="one-three">
+                            <span></span>
+                            <b>疫情地图</b>
+                            <span id="ly">数据来源：国家及各省市地区卫健委</span>
+                        </div>
+                        <div class="map2">
+                            <img src="http://49.232.173.220:3001/images/distribution-nationale.png">
+                        </div>
+                        <div class="mapimg" v-for="item in list3">
+                            <img :src="item">
+                        </div>
+                        <div class="zl">
+                            <div class="one-four">
+                                <span></span>
+                                <b>诊疗</b>
+                            </div>
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzI3MzI4NDM2MQ==&mid=100017262&idx=1&sn=a594fbad05a4eab8c72d58ef74e113ea&chksm=6b2728085c50a11eaf092f2ddddc99a0927429d2bfc10e4c1e5cdf3f859ee380a7014dbbf655#rd"><img src="img/3.png"></a>
+                        </div>  
+                        <div class="zl2">
+                            <div class="one-five">
+                                <span></span>
+                                <b>辟谣</b>
+                                <span class="xx">消息数量：{{list4.length}}</span>
+                            </div>
+                            <div class="box5">
+                                <div v-for="(item,index) in list4" id="con5">
+                                    <div class="wenti">
+                                        <p id="p1">{{item.title}}</p>                                  
+                                        <div class="daan">
+                                            <p id="p2">{{item.mainSummary}}</p>
+                                            <div class="show" v-show="index==limit">
+                                                {{item.body}}
+                                            </div>
+                                            <span @click="clickItem(index)" id="too">{{ showregion?"收起详情":"展开详情" }}</span>                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                </div>
+        </div>
+        </div>
+    </template>
+</body>
+
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            list2: '',
+            list3: [],
+            list4: []
+        },
+        created() {
+            var that = this;
+            fetch("http://49.232.173.220:3001/data/getStatisticsService").then(function(response) {
+                response.json().then(function(data) {
+                    console.log(data)
+                    that.list2 = data
+                    that.list3 = that.list2.dailyPics
+                    console.log(that.list3)
+                })
+            });
+            fetch("http://49.232.173.220:3001/data/getIndexRumorList").then(function(response) {
+                response.json().then(function(data) {
+                    console.log(data)
+                    that.list4 = data
+                    console.log(that.list4)
+                })
+            });
+        },
+        components: {
+            mycomp: {
+                template: '#comp',
+                props: {
+                    list2: {
+
+                    },
+                    list3: {
+                        type: Array
+                    },
+                    list4: {
+                        type: Array
+                    }
+                },
+                data() {
+                    return {
+                        list4s: this.list4,
+                        showregion: false,
+                        limit: -1,
+                    }
+                },
+                methods: {
+                    clickItem(index) {
+                        if (index == this.limit) {
+                            this.limit = -1
+                            this.showregion = !this.showregion;
+                        } else {
+                            this.limit = index;
+                            this.showregion = !this.showregion;
+                        }
+                    }
+                },
+            },
+
+
+        }
+    })
+</script>

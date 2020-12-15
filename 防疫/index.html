@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jQuery.js"></script>
+    <script src="js/vue.js"></script>
+    <!-- <script src="js/rem(字体自适应).js"></script> -->
+    <link rel="stylesheet" href="font/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: #F7F6F6;
+        }
+        
+        .box {
+            width: 100%;
+            margin-top: 4em;
+        }
+        
+        #con {
+            list-style: none;
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            background: #FFFEFE;
+            margin-bottom: 1.5em;
+            border-radius: 9px;
+        }
+        
+        #con .lei p {
+            font-weight: 700;
+            overflow: hidden;
+            /*超出部分隐藏*/
+            text-overflow: ellipsis;
+            /* 超出部分显示省略号 */
+            white-space: nowrap;
+            /*规定段落中的文本不进行换行 */
+            width: 100%;
+        }
+        
+        #con .lei nav {
+            font-size: 13px;
+            color: #999;
+            margin-top: 3%;
+        }
+        
+        #con .lei {
+            margin: 15px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        .sp span {
+            font-size: 13px;
+            color: #999;
+            margin-top: 3%;
+            display: inline-block;
+            width: 49%;
+        }
+        
+        .sp span:nth-child(2) {
+            text-align: right;
+        }
+        
+        .sp {
+            width: 100%;
+            display: flex;
+        }
+        
+        .tab {
+            width: 100%;
+            background: #4169E2;
+            position: fixed;
+            z-index: 3;
+            bottom: 0;
+            box-sizing: border-box;
+            height: 4em;
+            opacity: 0.9;
+        }
+        
+        .tab ul {
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .tab ul li {
+            list-style: none;
+            width: 25%;
+            text-align: center;
+            padding-top: 0.5em;
+        }
+        
+        .tab ul li a {
+            text-decoration: none;
+            font-size: 13px;
+        }
+        
+        .tab ul li:nth-child(1) a {
+            color: red;
+        }
+        
+        .tab ul li:nth-child(2) a {
+            color: black;
+        }
+        
+        .tab ul li:nth-child(3) a {
+            color: gold;
+        }
+        
+        .tab ul li:nth-child(4) a {
+            color: white;
+        }
+        
+        .tab ul li a span {
+            display: block;
+            font-size: 29px;
+        }
+        
+        .headers {
+            width: 100%;
+            background: #4169E2;
+            position: fixed;
+            top: 0;
+            display: flex;
+            line-height: 3em;
+        }
+        
+        .lei a {
+            text-decoration: none;
+        }
+        
+        .headers span:nth-child(1) {
+            color: white;
+            display: inline;
+            width: 50%;
+            padding-left: 10px;
+        }
+        
+        .headers span:nth-child(2) {
+            color: white;
+            display: inline;
+            width: 50%;
+            padding-left: 10px;
+            font-size: 13px;
+            text-align: right;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="headers">
+            <span>首页</span>
+            <span>开源地址</span>
+        </div>
+        <div class="box">
+            <div v-for="item in list1" id="con">
+                <div class="lei">
+                    <p>{{item.title}}
+                    </p>
+                    <a :href="item.sourceUrl">
+                        <nav>{{item.summary}}</nav>
+                    </a>
+                    <div class="sp">
+                        <span>时间:{{item.pubDateStr}}</span>
+                        <span>来源:{{item.infoSource}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <span class="iconfont icon-zhuye1 icon"></span>
+                        <p>首页</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="piyao.html">
+                        <span class="iconfont icon-xiaoemo icon"></span>
+                        <p>辟谣</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="fanghu.html">
+                        <span class="iconfont icon-dunpai icon"></span>
+                        <p>
+                            防护合辑
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="jibingzhishi.html">
+                        <span class="iconfont icon-shu1 icon"></span>
+                        <p>疾病知识</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            list1: []
+        },
+        created() {
+            var that = this;
+            fetch("http://49.232.173.220:3001/data/getTimelineService").then(function(response) {
+                response.json().then(function(data) {
+                    console.log(data)
+                    that.list1 = data
+                    console.log(that.list1)
+                })
+            })
+        },
+    })
+</script>

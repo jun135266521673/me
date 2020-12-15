@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jQuery.js"></script>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="font/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: #F7F6F6;
+        }
+        
+        .tab {
+            width: 100%;
+            background: #4169E2;
+            position: fixed;
+            z-index: 3;
+            bottom: 0;
+            box-sizing: border-box;
+            height: 4em;
+            opacity: 0.9;
+        }
+        
+        .tab ul {
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .tab ul li {
+            list-style: none;
+            width: 25%;
+            text-align: center;
+            padding-top: 0.5em;
+        }
+        
+        .tab ul li a {
+            text-decoration: none;
+            font-size: 13px;
+        }
+        
+        .tab ul li:nth-child(1) a {
+            color: red;
+        }
+        
+        .tab ul li:nth-child(2) a {
+            color: black;
+        }
+        
+        .tab ul li:nth-child(3) a {
+            color: gold;
+        }
+        
+        .tab ul li:nth-child(4) a {
+            color: white;
+        }
+        
+        .tab ul li a span {
+            display: block;
+            font-size: 29px;
+        }
+        
+        .headers {
+            width: 100%;
+            background: #4169E2;
+            position: fixed;
+            top: 0;
+            display: flex;
+            line-height: 3em;
+        }
+        
+        .lei a {
+            text-decoration: none;
+        }
+        
+        .headers span:nth-child(1) {
+            color: white;
+            display: inline;
+            width: 50%;
+            padding-left: 10px;
+        }
+        
+        .headers span:nth-child(2) {
+            color: white;
+            display: inline;
+            width: 50%;
+            padding-left: 10px;
+            font-size: 13px;
+            text-align: right;
+            padding-right: 10px;
+        }
+        
+        .boa {
+            width: 100%;
+            margin-top: 4em;
+        }
+        
+        .s1 {
+            width: 100%;
+            margin-bottom: 1em;
+            background: #F7F7F7;
+            border-bottom: 1px solid #dedede;
+        }
+        
+        .c1 {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            padding-bottom: 5%;
+            display: flex;
+            flex-flow: row wrap;
+            padding-top: 1%;
+        }
+        
+        .pic {
+            width: 25%;
+            float: left;
+        }
+        
+        .pic img {
+            width: 100%;
+        }
+        
+        .conright {
+            width: 70%;
+            float: left;
+            margin-left: 4%;
+        }
+        
+        .conright p:nth-child(1) {
+            font-weight: 700;
+            padding-top: 2%;
+        }
+        
+        .conright a {
+            text-decoration: none;
+        }
+        
+        .conright a p {
+            font-size: 13px;
+            color: #999;
+        }
+        
+        .s2 {
+            width: 100%;
+            margin-bottom: 1em;
+            background: #F7F7F7;
+            border-bottom: 1px solid #dedede;
+        }
+        
+        .c2 {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            padding-bottom: 5%;
+            display: flex;
+            flex-flow: row wrap;
+            padding-top: 1%;
+        }
+        
+        .conright2 a p {
+            font-size: 13px;
+            color: #999;
+            margin-top: 2%;
+        }
+        
+        .conright2 #tit {
+            font-weight: 700;
+            padding-top: 2%;
+            text-align: center;
+        }
+        
+        .conright2 a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="headers">
+            <span>知识</span>
+            <span>开源地址</span>
+        </div>
+        <mycomp6 :list6="list6"></mycomp6>
+        <div class="tab">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <span class="iconfont icon-zhuye1 icon"></span>
+                        <p>首页</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="piyao.html">
+                        <span class="iconfont icon-xiaoemo icon"></span>
+                        <p>辟谣</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="fanghu.html">
+                        <span class="iconfont icon-dunpai icon"></span>
+                        <p>
+                            防护合辑
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="jibingzhishi.html">
+                        <span class="iconfont icon-shu1 icon"></span>
+                        <p>疾病知识</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <template id="comp4">
+        <div class="boa">
+            <div class="s1" v-for="(item,index) in list6" v-if="index>0">
+                <div class="c1">
+                    <div class="pic">
+                        <img :src="item.imgUrl">
+                    </div>
+                    <div class="conright">
+                        <p>{{item.title}}</p>
+                        <a :href="item.linkUrl">
+                            <p>{{item.description}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                <div class="s2">
+                    <div class="c2">
+                        <div class="conright2">
+                            <p id="tit">{{item.title}}</p>
+                            <a :href="item.linkUrl">
+                                <p>{{item.description}}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            list6: []
+        },
+        created() {
+            var that = this;
+            fetch("http://49.232.173.220:3001/data/getWikiList").then(function(response) {
+                response.json().then(function(data) {
+                    console.log(data)
+                    that.list6 = data.result
+                    console.log(that.list6)
+                })
+            });
+        },
+        components: {
+            mycomp6: {
+                template: '#comp4',
+                props: {
+                    list6: {
+                        type: Array
+                    }
+                }
+            }
+        }
+    })
+</script>
